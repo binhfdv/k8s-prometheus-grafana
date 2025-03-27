@@ -58,6 +58,7 @@ password: admin
 
 ## 5. Import dashboard to Grafana WebUI:
 use `KubernetesPodsMonitoringViaPrometheus.json`
+
 ![Insert dashborad to Grafana.](images/grafana_import_dashboard.png)
 
 ## 6. Multus CNI
