@@ -8,11 +8,19 @@ Tested on Ubuntu 22.04.5 LTS, k8s version 1.30.5-1.1
 sudo chmod +x install_k8s.sh install_docker.sh
 ```
 
-## 1. Install docker and k8s
+## 1. Install containerd and k8s
 ```
-bash install_docker.sh
 bash install_k8s.sh
 ```
+### 1.1. If you want to use docker, use this instead otherwise move to step 2:
+```
+bash install_docker.sh
+cd use-docker-as-cri
+sudo chmod +x install_cri_dockerd.sh install_k8s_dockerd.sh
+bash install_cri_dockerd.sh
+bash install_k8s_dockerd.sh
+```
+
 
 Notes: taint master node if you do not have worker nodes
 ```
