@@ -73,6 +73,8 @@ use `KubernetesPodsMonitoringViaPrometheus.json`
 ```
 git clone https://github.com/k8snetworkplumbingwg/multus-cni.git ~/multus-cni
 cat ~/multus-cni/deployments/multus-daemonset-thick.yml | kubectl apply -f -
+# or
+kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml
 ```
 
 ### 7. OAI Namespace
