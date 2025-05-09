@@ -81,4 +81,9 @@ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-c
 ```
 kubectl create ns oai
 ```
-
+### 8. Install kubens
+```
+git clone https://github.com/ahmetb/kubectx.git
+sudo mv kubectx/kubens /usr/local/bin/
+kubens oai
+```
