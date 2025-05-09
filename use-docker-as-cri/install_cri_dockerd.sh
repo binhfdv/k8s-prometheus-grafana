@@ -5,6 +5,7 @@ sudo tar -xzvf go1.23.7.linux-amd64.tar.gz -C /usr/local
 echo export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH >> ~/.profile
 source ~/.profile
 go version
+sudo rm -rf go1.23.7.linux-amd64.tar.gz
 
 
 # Clone cri-dockerd repository

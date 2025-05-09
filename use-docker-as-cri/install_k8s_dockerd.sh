@@ -1,27 +1,38 @@
 # network clear-up and cluster reset
-sudo sysctl net.ipv4.conf.all.forwarding=1
-sudo iptables -P FORWARD ACCEPT
-sudo swapoff -a
-sudo ufw disable
 
-sudo ip link delete flannel.1 
-sudo ip link delete cni0 
-sudo rm $HOME/.kube/config
-sudo modprobe br_netfilter
-sudo sysctl net.bridge.bridge-nf-call-iptables=1
-sudo systemctl enable docker
+# Default CRI socket
+CRI_SOCKET="unix:///var/run/cri-dockerd.sock"
+
+# Check for user-provided cri-socket parameter
+for arg in "$@"; do
+  if [[ "$arg" == --cri-socket=* ]]; then
+    CRI_SOCKET="${arg#*=}"
+  fi
+done
+
 
 if ! command -v kubeadm &> /dev/null; then
     echo "kubeadm is not installed on the system"
     apt list -a kubeadm
 else
     # Run kubeadm reset with error handling
-    if sudo kubeadm reset -f; then
+    if sudo kubeadm reset -f --cri-socket="$CRI_SOCKET"; then
         echo "kubeadm reset completed successfully"
     else
         echo "Failed to reset kubeadm"
     fi
 fi
+
+sudo sysctl net.ipv4.conf.all.forwarding=1
+sudo iptables -P FORWARD ACCEPT
+sudo swapoff -a
+sudo ufw disable
+sudo ip link delete flannel.1 
+sudo ip link delete cni0 
+sudo rm $HOME/.kube/config
+sudo modprobe br_netfilter
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+sudo systemctl enable docker
 
 sudo rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
 
