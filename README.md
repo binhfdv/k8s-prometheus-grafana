@@ -8,11 +8,11 @@ Tested on Ubuntu 22.04.5 LTS, k8s version 1.30.5-1.1
 sudo chmod +x install_k8s.sh install_docker.sh
 ```
 
-## 1. Install containerd and k8s
+## 1.1 Install k8s with containerd
 ```
 bash install_k8s.sh
 ```
-### 1.1. If you want to use docker, use this instead otherwise move to step 2:
+## 1.2. If you want to use docker
 ```
 bash install_docker.sh
 cd use-docker-as-cri
@@ -24,7 +24,7 @@ bash install_k8s_dockerd.sh
 
 Notes: taint master node if you do not have worker nodes
 ```
- kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane-
+kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane-
 ```
 
 ## 2. Prometheus
@@ -86,4 +86,18 @@ kubectl create ns oai
 git clone https://github.com/ahmetb/kubectx.git
 sudo mv kubectx/kubens /usr/local/bin/
 kubens oai
+```
+
+### Debug
+#### When permission error happens with kubectl
+```
+KUBECONFIG=$HOME/.kube/config kubectl config view
+kubectl get nodes --kubeconfig ~/.kube/config
+
+export KUBECONFIG=$HOME/.kube/config
+source ~/.bashrc
+kubectl get nodes
+
+ls -l ~/.kube
+sudo chown -R $USER:$USER ~/.kube
 ```
