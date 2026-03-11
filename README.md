@@ -25,6 +25,18 @@ bash install_k8s_dockerd.sh
 Notes: taint master node if you do not have worker nodes
 ```
 kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane-
+kubectl taint nodes lapdk node-role.kubernetes.io/control-plane-
+```
+
+Label nodes
+```
+kubectl label nodes ubuntu20-core node-role=core
+
+kubectl label nodes ubuntu20-gnb node-role=gnb
+
+kubectl label nodes ubuntu22 node-role=ue
+
+kubectl label nodes lapdk node-role=core
 ```
 
 ## 2. Prometheus
