@@ -34,7 +34,7 @@ kubectl label nodes core node-role=core
 
 kubectl label nodes ran node-role=ran
 
-kubectl label nodes xapp node-role=xapp
+kubectl label nodes pi node-role=pi
 
 kubectl label nodes lapdk node-role=core
 ```
