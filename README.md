@@ -30,11 +30,11 @@ kubectl taint nodes lapdk node-role.kubernetes.io/control-plane-
 
 Label nodes
 ```
-kubectl label nodes ubuntu20-core node-role=core
+kubectl label nodes core node-role=core
 
-kubectl label nodes ubuntu20-gnb node-role=gnb
+kubectl label nodes ran node-role=ran
 
-kubectl label nodes ubuntu22 node-role=ue
+kubectl label nodes xapp node-role=xapp
 
 kubectl label nodes lapdk node-role=core
 ```
