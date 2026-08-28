@@ -37,6 +37,14 @@ kubectl label nodes ran node-role=ran
 kubectl label nodes pi node-role=pi
 
 kubectl label nodes lapdk node-role=core
+
+kubectl label nodes node-2 node-role=core
+kubectl label nodes node-3 node-role=ran
+kubectl label nodes node-4 node-role=ran-backup
+kubectl label nodes node-5 node-role=xapp
+kubectl label nodes node-6 node-role=xapp-backup
+kubectl label nodes node-7 node-role=ue
+kubectl label nodes node-8 node-role=dn
 ```
 
 ## 2. Prometheus
